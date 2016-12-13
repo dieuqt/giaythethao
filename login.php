@@ -61,7 +61,6 @@ include 'template/header.php';
 <br>
 <br>
 
-<div class="login-page">
     <div class="container">
     <form class="form-horizontal" role="form">
   <div class="form-group">

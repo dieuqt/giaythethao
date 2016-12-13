@@ -16,7 +16,7 @@ if(!session_id())
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <h2>Free style</h2>
+      <div class="name-shop" style="color: #8c2830; text-align: center" > <h2>FREE STYLE</h2> </div>
       <ul class="fa-ul">
           <li><i class="fa-li fa fa-building-o"></i>60 Ung Văn Khiêm, phường 25, quận Bình Thạnh, TPHCM (<a href="#" data-toggle="modal" data-target="#mapModal">Xem bản đồ</a>)</li>
           <li><i class="fa-li fa fa-phone"></i>0912 345 678</li>
@@ -41,7 +41,8 @@ if(!session_id())
         </div>
         <div class="row">
             <div class="col-md-4">
-              <button type="submit" class="btn btn-default btn-block">Gửi</button>
+              <button type="submit" class="btn btn-default btn-block" style="background-color: #8c2830;color: white">Gửi</button>
+              <br>
             </div>
         </div>
         
@@ -62,6 +63,7 @@ if(!session_id())
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+</div>
 </div>
 
 <?php

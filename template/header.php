@@ -39,30 +39,21 @@
 	<div class="top-header" style="position:fixed;z-index:10000; background-color:#FFF; width:100%" >
 	<div class="container" >
 		<div class="top-header-main" >
-			<div class="col-md-3 top-header-left">
+			<div class="col-md-4 top-header-left">
 				<div class="search-bar">
 					<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
 					<input type="submit" value="">
 				</div>
 			</div>
-			<div class="col-md-3 top-header-middle">
+			<div class="col-md-4 top-header-middle">
 				<a href="index.html"><img src="images/logo-4.png" alt="" /></a>
 			</div>
-			<div class="col-md-3 top-header-right">
-				<div class="cart box_1">
-						<a href="checkout.html">
-						<h3> <div class="total">
-							<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-							<img src="images/cart-1.png" alt="" />
-						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-						<div class="clearfix"> </div>
-					</div>
-			</div>
-			<div class="col-md-3 top-header-right2">
-				<a href="login.php">
-				<p><span class="glyphicon glyphicon-user"></span> Đăng nhập</p>
-				</a>
+			<div class="col-md-4 top-header-right">
+				<ul class="nav navbar-nav navbar-right">
+      			<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Giỏ Hàng </a></li>
+      			<li><a href="login.php"><i class="glyphicon glyphicon glyphicon-user"></i> Đăng Nhập</a></li>
+      			<!-- <li><a href="#">Đăng Ký</a></li> -->
+    			</ul>
 			</div>
 			<div class="clearfix"></div>
 		</div>
