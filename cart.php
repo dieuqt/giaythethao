@@ -1,5 +1,3 @@
-<br>
-<br>
 <?php
 include "config.php"; 
 session_start();
@@ -7,7 +5,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 // Connect to the MySQL database  
-include "storescripts/connect_to_mysql.php"; 
+include "data_access_helper.php"; 
 
 ?>
 <?php 
@@ -113,18 +111,18 @@ $cartTotal = "";
 $pp_checkout_btn = '';
 $product_id_array = '';
 if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
-    $cartTitle = "Giỏ Hàng Của Bạn Còn Trống";
+    $cartTitle = "Giỏ Hàng Của Bạn Còn Trống"; 
 }else{
 	$cartTitle ="Giỏ Hàng";
 	//Start Paypal checkout button
 	$pp_checkout_btn .= '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
     <input type="hidden" name="cmd" value="_cart">
     <input type="hidden" name="upload" value="1">
-    <input type="hidden" name="business" value="maihoangphuonganh@gmail.com">';
+    <input type="hidden" name="business" value="qtdieu@gmail.com">';
 	$i = 0;
 	foreach($_SESSION["cart_array"] as $each_item){
 		$item_id = $each_item['item_id'];
-		$sql = $mysqli->query("SELECT * FROM products WHERE id='$item_id' LIMIT 1");
+		$sql = $mysqli->query("SELECT * FROM product WHERE id='$item_id' LIMIT 1");
 		while($row = $sql->fetch_array()){
 			$product_name = $row["product_name"];
 			$price = $row["price"];
@@ -177,9 +175,16 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 ?>
 
 
-  <?php include_once("template_header.php");?>
+  <?php include_once("template/header.php");?>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
   <div class="container">
-    <h1 class="page-heading"><?php echo $cartTitle; ?></h1>
+    <h1 class="page-heading" style="font-size: 24px;"><?php echo $cartTitle; ?></h1>
     <table class="table">
       <tr>
         <th width="20%" >Sản phẩm</th>
@@ -198,11 +203,12 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
  			<a href="cart.php?cmd=emptycart" class="btn btn-danger">Xóa Giỏ Hàng</a>
  		</div>
         <div class="col-md-4">
- 			<a href="product_list.php" class="btn btn-success"><i class="fa fa-plus"></i> Tiếp Tục Mua Hàng</a>
+ 			<a href="products.php" class="btn btn-success"><i class="fa fa-plus"></i> Tiếp Tục Mua Hàng</a>
  		</div>
  		<div class="col-md-4 text-right">
  			<?php echo  $pp_checkout_btn; ?>
  		</div>
  	</div>
+ 	<br>
        
-  <?php include_once("template_footer.php");?>
+  <?php include_once("template/footer.php");?>

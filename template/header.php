@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<div class="col-md-4 top-header-middle">
-				<a href="index.html"><img src="images/logo-4.png" alt="" /></a>
+				<a href="index.php"><img src="images/logo-4.png" alt="" /></a>
 			</div>
 			<div class="col-md-4 top-header-right">
 				<ul class="nav navbar-nav navbar-right">
