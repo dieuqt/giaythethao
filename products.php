@@ -10,8 +10,8 @@ if ($dproductCount > 0) {
 	$dynamicList .= '<h1 class="page-heading">Sản Phẩm</h1>';
 	while($drow = $dsql->fetch_array()){ 
 			$i++;
-             $did = $drow["id"];
-			 $dproduct_name = $drow["product_name"];
+             $did = $drow["product_id"];
+			 $dproduct_name = $drow["name"];
 			 $dprice = $drow["price"];
 			 $ddate_added = strftime("%b %d, %Y", strtotime($drow["date_added"]));
 			 if($i%4==1){
@@ -25,7 +25,7 @@ if ($dproductCount > 0) {
       			</a>
   				<div class="caption text-center">
   					<h3>'.$dproduct_name.'</h3>
-  					<p class="text-info">'.$dprice.' USD</p>
+  					<p class="text-info">'.$dprice.' VND</p>
     				<p><a class="btn btn-success btn-block" href="product.php?id='.$did.'">Xem sản phẩm</a></p>
 				</div>
 			</div>

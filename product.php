@@ -1,49 +1,74 @@
-<?php
-if(!session_id())
-	session_start();
-	include 'header.php';
+<?php 
+// Script Error Reporting
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 ?>
-<html>
-	<!--start-breadcrumbs-->
-	<div class="breadcrumbs">
-		<div class="container">
-			<div class="breadcrumbs-main">
-				<ol class="breadcrumb">
-					<li><a href="index.php">Trang chủ</a></li>
-					<li class="active">Sản phẩm</li>
-				</ol>
-			</div>
-		</div>
-	</div>
-	<!--end-breadcrumbs-->
-	<!--start-single-->
-	<div class="single contact">
-		<div class="container">
-			<div class="single-main">
-				<div class="col-md-12 single-main-left">
+<?php 
+// Check to see the URL variable is set and that it exists in the database
+if (isset($_GET['id'])) {
+	// Connect to the MySQL database  
+    include "data_access_helper.php"; 
+	$id = preg_replace('#[^0-9]#i', '', $_GET['id']); 
+	// Use this var to check to see if this ID exists, if yes then get the product 
+	// details, if no then exit this script and give message why
+	$sql = $mysqli->query("SELECT * FROM product WHERE product_id='$id' LIMIT 1");
+	$productCount = $sql->num_rows; // count the output amount
+    if ($productCount > 0) {
+		// get all the product details
+		while($row = $sql->fetch_array()){ 
+			 $product_name = $row["name"];
+			 $price = $row["price"];
+			 $date_added = strftime("%b %d, %Y", strtotime($row["date_added"]));
+         }
+		 
+	} else {
+		echo "That item does not exist.";
+	    exit();
+	}
+		
+} else {
+	echo "Data to render this page is missing.";
+	exit();
+}
+$mysqli->close();
+
+?>
+	<?php include_once("template/header.php");?>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+    <div class="container">
+    <h1 class="page-heading" style="font-size: 24px">Chi Tiết Sản Phẩm</h1>
+    	<!--start-single-->
+	<div class="container">
+		<div class="single-main">
+			<div class="col-md-12 single-main-left">
 				<div class="sngl-top">
 					<div class="col-md-4 single-top-left">	
 						<div class="flexslider">
 							<ul class="slides">
 								<li data-thumb="images/s1.jpg">
-									<img src="images/s1.jpg" />
+									<img src="Images/<?php echo $id; ?>.jpg" />
 								</li>
 								<li data-thumb="images/s2.jpg">
-									<img src="images/s2.jpg" />
+									<img src="Images/<?php echo $id; ?>.jpg" />
 								</li>
 								<li data-thumb="images/s3.jpg">
-									<img src="images/s3.jpg" />
+									<img src="Images/<?php echo $id; ?>.jpg" />
 								</li>
 								<li data-thumb="images/s4.jpg">
-									<img src="images/s4.jpg" />
+									<img src="Images/<?php echo $id; ?>.jpg" />
 								</li>
 							</ul>
 						</div>
 <!-- FlexSlider -->
-  <script defer src="js/jquery.flexslider.js"></script>
+<script defer src="js/jquery.flexslider.js"></script>
 <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-
-	<script>
+<script>
 // Can also be used with $(document).ready()
 $(window).load(function() {
   $('.flexslider').flexslider({
@@ -52,146 +77,26 @@ $(window).load(function() {
   });
 });
 </script>
-				</div>	
+<!--end-single-->
+					</div>	
 				<div class="col-md-8 single-top-right">
-					<div class="details-left-info simpleCart_shelfItem">
-						<h3>Accessories Latest</h3>
-						<p class="availability">Availability: <span class="color">In stock</span></p>
-						<div class="price_single">
-							<span class="reducedfrom">$800.00</span>
-							<span class="actual item_price">$600.00</span><a href="#">click for offer</a>
-						</div>
-						<h2 class="quick">Quick Overview:</h2>
-						<p class="quick_desc"> Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; es</p>
-						<ul class="product-colors">
-							<h3>available Colors ::</h3>
-							<li><a class="color1" href="#"><span> </span></a></li>
-							<li><a class="color2" href="#"><span> </span></a></li>
-							<li><a class="color3" href="#"><span> </span></a></li>
-							<li><a class="color4" href="#"><span> </span></a></li>
-							<li><a class="color5" href="#"><span> </span></a></li>
-							<li><a class="color6" href="#"><span> </span></a></li>
-							<li><a class="color7" href="#"><span> </span></a></li>
-							<li><a class="color8" href="#"><span> </span></a></li>
-							<div class="clear"> </div>
-						</ul>
-						<ul class="size">
-							<h3>Length</h3>
-							<li><a href="#">7</a></li>
-							<li><a href="#">6</a></li>
-						</ul>
-						<div class="quantity_box">
-							<ul class="product-qty">
-								<span>Quantity:</span>
-								<select>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-								</select>
-							</ul>
-						</div>
-					<div class="clearfix"> </div>
-				<div class="single-but item_add">
-					<input type="submit" value="add to cart"/>
-				</div>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-					<div class="latest products">
-						<div class="product-one">
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									
-									<a href="#">
-								<img src="images/shoes-1.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-							</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-									
-								</div>
-							</div>
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									<a href="#">
-								<img src="images/shoes-2.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-							</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-									
-								</div>
-							</div>
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									<a href="#">
-								<img src="images/shoes-3.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-							</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>									
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="product-one">
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									<a href="#">
-								<img src="images/shoes-13.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-							</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>									
-								</div>
-							</div>
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									<a href="#">
-								<img src="images/shoes-5.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-							</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>									
-								</div>
-							</div>
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									<a href="#">
-								<img src="images/shoes-6.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-								</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>				
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
+					<div class="details-left-info simpleCart_shelfItem">	
+	    				<h3 class="on-top"><?php echo $product_name; ?></h3>
+		          		<p><?php echo $price."VND"; ?></p>
+		            	<form id="form1" name="form1" method="post" action="cart.php">
+			           		<input type="hidden" name="pid" id="pid" value="<?php echo $id; ?>" />
+			            	<button type="submit" name="button" id="button" class="btn btn-success"><i class="fa fa-cart-plus fa-2x"></i></button>
+			        	</form>
+	    			</div>
+	    		</div>	
 			</div>
 		</div>
 	</div>
-	<!--end-single-->
-</body>
-</html>
-<?php
-	include 'footer.php';
-?>
+	</div>
+</div>
+<?php include_once("template/footer.php");?>
+<script language="javascript" type="text/javascript">
+	$(document).ready(function(e) {
+		setActive(1);
+	});	
+</script>

@@ -122,11 +122,10 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 	$i = 0;
 	foreach($_SESSION["cart_array"] as $each_item){
 		$item_id = $each_item['item_id'];
-		$sql = $mysqli->query("SELECT * FROM product WHERE id='$item_id' LIMIT 1");
+		$sql = $mysqli->query("SELECT * FROM product WHERE product_id='$item_id' LIMIT 1");
 		while($row = $sql->fetch_array()){
-			$product_name = $row["product_name"];
+			$product_name = $row["name"];
 			$price = $row["price"];
-			$details = $row["details"];
 		}
 		$pricetotal = $price*$each_item['quantity']; 
 		$cartTotal = $pricetotal + $cartTotal;
@@ -140,7 +139,6 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 		//Dynamic table row assembly
 		$cartOutput .= "<tr>";
 		$cartOutput .= '<td><img src="Images/' . $item_id . '.jpg" alt="' . $product_name. '" width="80" border="1" /><br><a href="product.php?id=' . $item_id . '">' . $product_name . '</a></td>';
-		$cartOutput .= '<td>'.$details.'</td>';
 		$cartOutput .= '<td>'.$price.' USD</td>';
 		$cartOutput .= '<td><form action="cart.php" method="post">
 		<div class="input-group input-group-sm">
@@ -187,11 +185,10 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
     <h1 class="page-heading" style="font-size: 24px;"><?php echo $cartTitle; ?></h1>
     <table class="table">
       <tr>
-        <th width="20%" >Sản phẩm</th>
-        <th width="40%" >Chi tiết</th>
-        <th width="15%" >Đơn giá</th>
+        <th width="30%" >Sản phẩm</th>
+        <th width="20%" >Đơn giá</th>
         <th width="15%" >Số lượng</th>
-        <th width="15%" >Thành tiền</th>
+        <th width="20%" >Thành tiền</th>
         <th width="5%" >Xóa</th>
       </tr>
 	
@@ -200,7 +197,7 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
     </table>
  	<div class="row">
  		<div class="col-md-4">
- 			<a href="cart.php?cmd=emptycart" class="btn btn-danger">Xóa Giỏ Hàng</a>
+ 			<a href="cart.php?cmd=emptycart" class="btn btn-default" style="background-color: #8c2830; color: white">Xóa Giỏ Hàng</a>
  		</div>
         <div class="col-md-4">
  			<a href="products.php" class="btn btn-success"><i class="fa fa-plus"></i> Tiếp Tục Mua Hàng</a>

@@ -1,14 +1,3 @@
-/*
- * jQuery FlexSlider v2.4.0
- * http://www.woothemes.com/flexslider/
- *
- * Copyright 2012 WooThemes
- * Free to use under the GPLv2 and later license.
- * http://www.gnu.org/licenses/gpl-2.0.html
- *
- * Contributing author: Tyler Smith (@mbmufffin)
- * 
- */
 /* ====================================================================================================================
  * FONT-FACE
  * ====================================================================================================================*/
@@ -92,7 +81,7 @@ html[xmlns] .flexslider .slides {
   zoom: 1;
 }
 .flexslider .slides img {
-  height: auto;
+  height: 330px;
 }
 .flex-viewport {
   max-height: 2000px;

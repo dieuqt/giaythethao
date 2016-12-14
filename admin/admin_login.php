@@ -14,8 +14,8 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 	$manager = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["username"]); // filter everything but numbers and letters
     $password = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]); // filter everything but numbers and letters
     // Connect to the MySQL database  
-    include "../storescripts/connect_to_mysql.php"; 
-    $sql = $mysqli->query("SELECT id FROM admin WHERE username='$manager' AND password='$password' LIMIT 1"); // query the person
+    include "../data_access_helper.php"; 
+    $sql = $mysqli->query("SELECT admin_loginid FROM admin WHERE username='$manager' AND password='$password' LIMIT 1"); // query the person
     // ------- MAKE SURE PERSON EXISTS IN DATABASE ---------
     $existCount = $sql->num_rows; // count the row nums
     if ($existCount == 1) { // evaluate the count
@@ -41,7 +41,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>RUNNING MAN|DON'T WALK BUT RUN</title>
+    <title>FREE STYLE | Hàng có sẵn</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo $rooturl; ?>css/bootstrap.min.css" rel="stylesheet">
@@ -67,8 +67,6 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
       </form>
 
     </div>
-
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="<?php echo $rooturl; ?>js/jquery-1.11.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

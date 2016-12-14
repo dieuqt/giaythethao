@@ -9,8 +9,8 @@ if ($dproductCount > 0) {
 	$dynamicList .= '<h1 class="page-heading">Sản Phẩm Mới</h1>';
 	while($drow = $dsql->fetch_array()){ 
 			$i++;
-             $did = $drow["id"];
-			 $dproduct_name = $drow["product_name"];
+             $did = $drow["product_id"];
+			 $dproduct_name = $drow["name"];
 			 $dprice = $drow["price"];
 			 $ddate_added = strftime("%b %d, %Y", strtotime($drow["date_added"]));
 			 if($i%4==1){
@@ -46,23 +46,18 @@ if ($dproductCount > 0) {
 $mysqli->close();
 
 ?>
-	<?php
-	if(!session_id())
-	session_start();
-	include 'template/header.php';
-	include 'template/slide.php';
-	?>
-	<!--start-hot-shoes--> 
-	<div class="shoes"> 
-		<div class="container"> 
-			<div class="slideshow-products">SẢN PHẨM HOT</div>
-			<br>
-	<!--end-shoes-->
-	<!--start-all-shoes-->
-	<div class="slideshow-products">TẤT CẢ SẢN PHẨM</div>
-	<br>
-	<!--end-shoes-->
-	
-	<?php
-	include 'template/footer.php';
-	?>
+<?php 
+include 'template/header.php';
+include 'template/slide.php';
+?>
+<div class="container">
+    <?php echo $dynamicList; ?>
+</div>
+<?php
+include 'template/footer.php';
+?>
+<script language="javascript" type="text/javascript">
+	$(document).ready(function(e) {
+		setActive(0);
+	});	
+</script>
