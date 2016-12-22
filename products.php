@@ -25,8 +25,8 @@ if ($dproductCount > 0) {
       			</a>
   				<div class="caption text-center">
   					<h3>'.$dproduct_name.'</h3>
-  					<p class="text-info">'.$dprice.' VND</p>
-    				<p><a class="btn btn-success btn-block" href="product.php?id='.$did.'">Xem sản phẩm</a></p>
+  					<p class="text-info">'.$dprice.' USD</p>
+    				<p><a class="btn btn-default btn-block" style="background-color: #7bbd42; color: white" href="product.php?id='.$did.'">Xem sản phẩm</a></p>
 				</div>
 			</div>
 		  </div>
@@ -43,7 +43,6 @@ $mysqli->close();
 
 ?>
 <?php include_once("template/header.php");?>
-<br>
 <br>
 <br>
 <br>

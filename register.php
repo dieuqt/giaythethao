@@ -1,63 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Trang đăng ký</title>
-    </head>
-    <body>
-        <h1>Trang đăng ký thành viên</h1>
-        <form action="register.php" method="POST">
-            <table cellpadding="0" cellspacing="0" border="1">
-                <tr>
-                    <td>
-                        Tên đăng nhập : 
-                    </td>
-                    <td>
-                        <input type="text" name="txtUsername" size="50" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Mật khẩu :
-                    </td>
-                    <td>
-                        <input type="password" name="txtPassword" size="50" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Họ và tên :
-                    </td>
-                    <td>
-                        <input type="text" name="txtFullname" size="50" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Email :
-                    </td>
-                    <td>
-                        <input type="text" name="txtEmail" size="50" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Giới tính :
-                    </td>
-                    <td>
-                        <select name="txtSex">
-                            <option value=""></option>
-                            <option value="Nam">Nam</option>
-                            <option value="Nu">Nữ</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <input type="submit" value="Đăng ký" />
-            <input type="reset" value="Nhập lại" />
-        </form>
-    </body>
-</html>
 <?php
 
     // Nếu không phải là sự kiện đăng ký thì không xử lý
@@ -96,7 +36,7 @@
         exit;
     }
           
-    //Kiểm tra email có đúng định dạng hay không
+    //Kiểm tra email có đúng định dạng hay không *:lặp đi lặp lại, a-z0-9: biểu diễn 1 ký tự là chữ hoặc số. ^: bd 1 chuỗi; \d: ký tự số. {10,11}: kiểm tra sdt
     if (!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", $email))
     {
         echo "Email này không hợp lệ. Vui long nhập email khác. <a href='javascript: history.go(-1)'>Trở lại</a>";
@@ -139,4 +79,50 @@
         echo "Quá trình đăng ký thành công. <a href='/'>Về trang chủ</a>";
     else
         echo "Có lỗi xảy ra trong quá trình đăng ký. <a href='registerj.php'>Thử lại</a>";
+?>
+
+<?php
+include 'template/header.php'; 
+?>
+    <div class="container">   
+        <form action="register.php" method="POST">
+            <table cellpadding="0" cellspacing="0" border="1">
+                <tr>
+                    <td>
+                        Tên đăng nhập : 
+                    </td>
+                    <td>
+                        <input type="text" name="txtUsername" size="50" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Mật khẩu :
+                    </td>
+                    <td>
+                        <input type="password" name="txtPassword" size="50" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Họ và tên :
+                    </td>
+                    <td>
+                        <input type="text" name="txtFullname" size="50" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email :
+                    </td>
+                    <td>
+                        <input type="text" name="txtEmail" size="50" />
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" name="submit" value="Đăng ký" />
+            <input type="reset" value="Nhập lại" />
+        </form>
+<?php
+include 'template/footer.php'; 
 ?>

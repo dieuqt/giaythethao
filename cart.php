@@ -1,5 +1,5 @@
 <?php
-include "config.php"; 
+include "path.php"; 
 session_start();
 // Script Error Reporting
 error_reporting(E_ALL);
@@ -167,13 +167,13 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 	<input type="hidden" name="cancel_return" value="'.$rooturl.'paypal_cancel.php">
 	<input type="hidden" name="lc" value="US">
 	<input type="hidden" name="currency_code" value="USD">
-	<input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - its fast, free and secure!">
 	</form>';
 }
 ?>
 
 
-  <?php include_once("template/header.php");?>
+
+  <?php include 'template/header.php';?>
 <br>
 <br>
 <br>
@@ -200,12 +200,11 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
  			<a href="cart.php?cmd=emptycart" class="btn btn-default" style="background-color: #8c2830; color: white">Xóa Giỏ Hàng</a>
  		</div>
         <div class="col-md-4">
- 			<a href="products.php" class="btn btn-success"><i class="fa fa-plus"></i> Tiếp Tục Mua Hàng</a>
+ 			<a href="products.php" class="btn btn-default" style="background-color: #7bbd42; color: white"><i class="fa fa-plus"></i> Tiếp Tục Mua Hàng</a>
  		</div>
  		<div class="col-md-4 text-right">
- 			<?php echo  $pp_checkout_btn; ?>
+ 			<a href="checkout.php" class="btn btn-primary" ><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Thanh toán</a>
  		</div>
  	</div>
- 	<br>
-       
-  <?php include_once("template/footer.php");?>
+ 	<br>       
+  <?php include 'template/footer.php';?>

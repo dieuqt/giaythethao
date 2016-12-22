@@ -40,10 +40,13 @@
 	<div class="container" >
 		<div class="top-header-main" >
 			<div class="col-md-4 top-header-left">
-				<div class="search-bar">
-					<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-					<input type="submit" value="">
-				</div>
+				<form class="navbar-form" role="search" action="search.php" method="get">
+                    <div class="form-group">
+                        <input type="text" placeholder="Tìm kiếm sản phẩm ở đây.." class="form-control" name="keyword">
+                    </div>
+                    &nbsp; 
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
 			</div>
 			<div class="col-md-4 top-header-middle">
 				<a href="index.php"><img src="images/logo-4.png" alt="" /></a>
@@ -52,7 +55,6 @@
 				<ul class="nav navbar-nav navbar-right">
       			<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Giỏ Hàng </a></li>
       			<li><a href="login.php"><i class="glyphicon glyphicon glyphicon-user"></i> Đăng Nhập</a></li>
-      			<!-- <li><a href="#">Đăng Ký</a></li> -->
     			</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -64,53 +66,21 @@
 		<div class="container">
 			<div class="top-nav">
 				<ul class="memenu skyblue"><li class="active"><a href="index.php">Trang chủ</a></li>
-					<li class="grid"><a href="#">Adidas</a>
-						<div class="mepanel">
-							<div class="row">
-								<div class="col1 me-one">
-									<ul>
-										<li><a href="products.php>Yezzy</a></li>
-										<li><a href="products.php">Ultra Boost</a></li>
-										<li><a href="products.php">Tubular</a></li>
-										<li><a href="products.php">Super Star</a></li>
-										<li><a href="products.php">Stan Mith</a></li>
-										<li><a href="products.php">NMD Runner</a></li>
-									</ul>	
-								</div>
+					<li class="grid"><a href="products.php">Sản phẩm</a>
+					<div class="mepanel">
+						<div class="row">
+							<div class="col1 me-one">
+								<ul>
+									<li><a href="products_nike.php">NIKE</a></li>
+									<li><a href="products_adidas.php">ADIDAS</a></li>
+									<li><a href="products_converse.php">CONVERSE</a></li>
+								</ul>	
 							</div>
 						</div>
+					</div>
 					</li>
-					
-					<li class="grid"><a href="#">Nike</a>
-						<div class="mepanel">
-							<div class="row">
-								<div class="col1 me-one">
-									<ul>
-										<li><a href="products.html">Air Max</a></li>
-										<li><a href="products.html">Air Force</a></li>
-										<li><a href="products.html">Zoom</a></li>
-										<li><a href="products.html">Huarache</a></li>
-									</ul>	
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="grid"><a href="#">Converse</a>
-						<div class="mepanel">
-							<div class="row">
-								<div class="col1 me-one">
-									<ul>
-										<li><a href="products.html">Basic</a></li>
-										<li><a href="products.html">Chuck II</a></li>
-									</ul>	
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="grid"><a href="#">Vans</a>
-					</li>
-					<li class="grid"><a href="contact.php">Liên hệ</a>
-					</li>
+					<li class="grid"><a href="about.php">Giới thiệu</a></li>
+					<li class="grid"><a href="contact.php">Liên hệ</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"> </div>

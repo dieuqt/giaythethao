@@ -10,31 +10,28 @@ if (isset($_POST['login']))
 {
     //Kết nối tới database
     include 'data_access_helper.php';
-    $db = new DataAccessHelper;
-    $db->connect();
-     
     //Lấy dữ liệu nhập vào
-    $username = addslashes($_POST['txtUsername']);
-    $password = addslashes($_POST['txtPassword']);
+    $username = $_POST["txtUsername"];
+    $password = $_POST["txtPassword"];
      
     //Kiểm tra đã nhập đủ tên đăng nhập với mật khẩu chưa
-    if (!$username || !$password) {
+    if($username == NULL || $password == NULL){
         echo "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu. <a href='javascript: history.go(-1)'>Trở lại</a>";
         exit;
-    }
-     
+    }   
     // mã hóa pasword
     $password = md5($password);
      
     //Kiểm tra tên đăng nhập có tồn tại không
-    $query = $db->executeNonQuery("SELECT username, password FROM user WHERE username='$username'");
-    if (mysql_num_rows($query) == 0) {
+    $query = mysql_query("SELECT count(username) FROM user WHERE username='$username'");
+    $row = mysqli_fetch_assoc($query);
+    if ( $row['count(username)'] == 0) {
         echo "Tên đăng nhập này không tồn tại. Vui lòng kiểm tra lại. <a href='javascript: history.go(-1)'>Trở lại</a>";
         exit;
     }
-     
     //Lấy mật khẩu trong database ra
-    $row = mysql_fetch_array($query);
+    $query = mysql_query("SELECT password FROM user WHERE username='$username'");
+    $row = mysqli_fetch_assoc($query);
      
     //So sánh 2 mật khẩu có trùng khớp hay không
     if ($password != $row['password']) {
@@ -62,7 +59,7 @@ include 'template/header.php';
 <br>
 
     <div class="container">
-    <form class="form-horizontal" role="form">
+    <form action="login.php" method='POST' class="form-horizontal" role="form">
   <div class="form-group">
     <label for="txtUsername" class="col-sm-2 control-label">Tên đăng nhập</label>
     <div class="col-sm-10">
@@ -87,8 +84,7 @@ include 'template/header.php';
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-default" style="background-color: #8c2830; color: white">Đăng nhập</button>
-      <button type="submit" class="btn btn-default" style="background-color: #8c2830; color: white">Đăng ký</button>
-      <a href='register.php' title='Đăng ký'>Đăng ký</a>
+      <a href="register.php"><i class="glyphicon glyphicon glyphicon-user"></i> Đăng ký</a></li>
     </div>
   </div>
 </form>
