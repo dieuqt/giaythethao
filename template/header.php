@@ -45,7 +45,7 @@
                         <input type="text" placeholder="Tìm kiếm sản phẩm ở đây.." class="form-control" name="keyword">
                     </div>
                     &nbsp; 
-                    <button type="submit" class="btn btn-success">Search</button>
+                    <button type="submit" name="search" class="btn btn-success">Search</button>
                 </form>
 			</div>
 			<div class="col-md-4 top-header-middle">

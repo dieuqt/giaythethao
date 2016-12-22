@@ -1,80 +1,52 @@
-
-<h1><?= Html::encode($this->title) ?></h1>
-
-<form action="" method="get">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Tìm kiếm theo tên sản phẩm..." name="keyword" value="<?php echo $keyword; ?>">
-
-    <div class="input-group-btn">
-      <button class="btn btn-default" type="submit">
-        <i class="glyphicon glyphicon-search"></i>
-      </button>
-    </div>
-  </div>
-</form>
-
-<br/>
-
-<div class="search-result">
-  <?php
-    if (count($results)) {
-      echo "Found ".count($results)." results";
-
-      echo "
-        <div class='table-responsive grid-view'>
-          <table class='table table-striped table-bordered'>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>";
-
-            foreach ($results as $key =>  $row) {
-            echo "
-              <tr>
-                <td>".($key + 1)."</td>
-                <td>".$row["product_name"]."</td>
-                <td class='post-img'><img src='".$row["image_url"]."'></td>
-                <td>".$row["category"]."</td>
-                <td>".$row["price"]."</td>
-                <td class='post-actions'>
-                  <a title='Update'>
-                    <span class='glyphicon glyphicon-pencil'></span>
-                  </a>
-                  <a title='Delete'>
-                    <span class='glyphicon glyphicon-trash'></span>
-                  </a>
-                </td>
-              </tr>
-            ";
-            }
-          
-      echo "
-            </tbody>
-          </table>
-        </div>";
+<?php 
+if (isset($_REQUEST['search'])) {
+    $key = addslashes($_GET['keyword']);
+    if (empty($key)) {
+        echo "Yêu cầu nhập từ khóa";
     } else {
-      echo "There were no results found";
-    }     
-  ?>
-</div>
+            $query = "SELECT product.product_id FROM product WHERE product.name LIKE '%$key%' or product.category like '%$key%'");
+              include '../data_access_helper.php';
+                // Thực thi câu truy vấn
+            $sql = mysql_query($query);
+ 
+                // Đếm số đong trả về trong sql.
+            $num = mysql_num_rows($sql);
+ 
+                // Nếu có kết quả thì hiển thị, ngược lại thì thông báo không tìm thấy kết quả
+            if ($num > 0 && $key != "") 
+              {
+                    // Dùng $num để đếm số dòng trả về.
+                echo "$num ket qua tra ve voi tu khoa <b>$key</b>";
+ 
+                    // Vòng lặp while & mysql_fetch_assoc dùng để lấy toàn bộ dữ liệu có trong table và trả về dữ liệu ở dạng array.
+                    echo '<table border="1" cellspacing="0" cellpadding="10">';
+                    while ($row = mysql_fetch_assoc($sql)) {
+                        echo '<tr>';
+                            echo "<td>{$row['user_id']}</td>";
+                            echo "<td>{$row['username']}</td>";
+                            echo "<td>{$row['password']}</td>";
+                            echo "<td>{$row['email']}</td>";
+                            echo "<td>{$row['address']}</td>";
+                        echo '</tr>';
+                    }
+                    echo '</table>';
+                } 
+                else {
+                    echo "Khong tim thay ket qua!";
+                }
+    }
+}
+?>
 
-<style>
-  .post-img {
-    text-align: center;
-  }
-  .post-img img {
-    max-height: 70px;
-  }
-  .post-actions a {
-    display: inline-block;
-    text-align: center;
-    width: 45%;
-  }
-</style>
+<div class="row">
+            <ul class="pagination alg-right-pad">
+              <?php
+                for($b = 1; $b <= $a; $b++){
+                ?><li><a href="search.php?keyword=<?php echo $key; ?>&page=<?php echo $b;?>"> <?php echo $b." "; ?></a><?php  
+              }
+              ?>
+            </ul>
+          </div>
+          </li>
+          </ul>
+          </div>

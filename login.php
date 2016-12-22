@@ -6,14 +6,13 @@ session_start();
 header('Content-Type: text/html; charset=UTF-8');
  
 //Xử lý đăng nhập
-if (isset($_POST['login'])) 
+if (isset($_POST["username"]) && isset($_POST["password"]))
 {
+    //Lấy dữ liệu nhập vào
+    $username = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["username"]);
+    $password = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]);
     //Kết nối tới database
     include 'data_access_helper.php';
-    //Lấy dữ liệu nhập vào
-    $username = $_POST["txtUsername"];
-    $password = $_POST["txtPassword"];
-     
     //Kiểm tra đã nhập đủ tên đăng nhập với mật khẩu chưa
     if($username == NULL || $password == NULL){
         echo "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu. <a href='javascript: history.go(-1)'>Trở lại</a>";
@@ -61,15 +60,15 @@ include 'template/header.php';
     <div class="container">
     <form action="login.php" method='POST' class="form-horizontal" role="form">
   <div class="form-group">
-    <label for="txtUsername" class="col-sm-2 control-label">Tên đăng nhập</label>
+    <label for="username" class="col-sm-2 control-label">Tên đăng nhập</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="txtUsername" placeholder="Tên đăng nhập" style="width: 400px;height: 30px">
+      <input type="text" class="form-control" id="username" placeholder="Tên đăng nhập" style="width: 400px;height: 30px">
     </div>
   </div>
   <div class="form-group">
-    <label for="txtPassword" class="col-sm-2 control-label">Mật khẩu</label>
+    <label for="password" class="col-sm-2 control-label">Mật khẩu</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="txtPassword" placeholder="Mật khẩu" style="width: 400px;height: 30px">
+      <input type="password" class="form-control" id="password" placeholder="Mật khẩu" style="width: 400px;height: 30px">
     </div>
   </div>
   <div class="form-group">
@@ -83,17 +82,17 @@ include 'template/header.php';
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default" style="background-color: #8c2830; color: white">Đăng nhập</button>
-      <a href="register.php"><i class="glyphicon glyphicon glyphicon-user"></i> Đăng ký</a></li>
+      <button type="submit" name ="login" class="btn btn-default" style="background-color: #8c2830; color: white">Đăng nhập</button>
+      <br>
+      <br>
+      <p>Nếu chưa có tài khoản, vui lòng đăng ký <a href="register.php">tại đây</a></p>
     </div>
   </div>
 </form>
        
     </div>
 </div>
-<?php
-include 'template/footer.php';
-?>
+<?php include 'template/footer.php';?>
 <script src="<?php echo $rooturl; ?>js/jquery-1.11.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo $rooturl; ?>js/bootstrap.min.js"></script>
