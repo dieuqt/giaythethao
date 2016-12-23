@@ -126,6 +126,7 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 		while($row = $sql->fetch_array()){
 			$product_name = $row["name"];
 			$price = $row["price"];
+			$product_id = $row["product_id"];
 		}
 		$pricetotal = $price*$each_item['quantity']; 
 		$cartTotal = $pricetotal + $cartTotal;
@@ -168,11 +169,22 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 	<input type="hidden" name="lc" value="US">
 	<input type="hidden" name="currency_code" value="USD">
 	</form>';
+
+	if($_SESSION['username']){
+		$username =$_SESSION['username'];
+	}
+	else $username = "guest";
+	date_default_timezone_set('GMT');
+	$today = date("Y-m-d H:i:s");
+	echo $today;
+	if($_SESSION['cart_array'][0]['quantity']){
+		$quantity = $_SESSION['cart_array'][0]['quantity'];
+	}
+echo $username.'/'.$product_name.'/'.$quantity.'/'.$pricetotal;
+
+	$mysqli->query("INSERT INTO order(username, product_id, quantity_order, total, date_added) VALUES ('$username','$product_name','$quantity','$pricetotal','$today')");
 }
 ?>
-
-
-
   <?php include 'template/header.php';?>
 <br>
 <br>
@@ -206,5 +218,6 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
  			<a href="checkout.php" class="btn btn-primary" ><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Thanh toán</a>
  		</div>
  	</div>
- 	<br>       
+ 	<br>
+ 	<pre><?php print_r($_SESSION["cart_array"]);?></pre>  
   <?php include 'template/footer.php';?>

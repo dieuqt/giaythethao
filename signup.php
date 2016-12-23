@@ -25,6 +25,14 @@
           <label for="email" class="sr-only">Email</label>
           <input name="email" type="text" id="email" class="form-control" placeholder="Email" required="" autofocus="">
         </div>
+  <div class="form-group">
+          <label for="phone" class="sr-only">Điện thoại</label>
+          <input name="phone" type="text" id="phone" class="form-control" placeholder="Điện thoại" required="" autofocus="">
+        </div>
+  <div class="form-group">
+          <label for="address" class="sr-only">Địa chỉ</label>
+          <input name="address" type="text" id="address" class="form-control" placeholder="Địa chỉ" required="" autofocus="">
+        </div>
   <button class="btn btn-lg btn-primary btn-block" type="submit" name="button" id="button">Đăng ký</button>
 
 </form>

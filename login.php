@@ -10,17 +10,16 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     $password = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]); // filter everything but numbers and letters
     // Connect to the MySQL database  
     include "data_access_helper.php"; 
-    $sql = $mysqli->query("SELECT user_id FROM user WHERE username='$username' AND password='$password' LIMIT 1"); // query the person
+    $sql = $mysqli->query("SELECT username FROM user WHERE username='$username' AND password='$password' LIMIT 1"); // query the person
     // ------- MAKE SURE PERSON EXISTS IN DATABASE ---------
     $existCount = $sql->num_rows; // count the row nums
     if ($existCount == 1) { // evaluate the count
        while($row = $sql->fetch_array()){ 
              $id = $row["user_id"];
      }
-     $_SESSION["user_id"] = $id;
      $_SESSION["username"] = $username;
      $_SESSION["password"] = $password;
-     echo "<script>alert('Đăng nhập thành công!')</script>";
+     echo "<script> alert('Đăng nhập thành công!')</script>";
      header("location: index.php");
          exit();
     } else {

@@ -6,19 +6,16 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 // Connect to the MySQL database  
 include "data_access_helper.php"; 
-
 ?>
 <?php 
 if (isset($_POST['pid'])) {
     $pid = $_POST['pid'];
 	$wasFound = false;
 	$i = 0;
-
 	// If the cart session variable is not set or cart array is empty
 	if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) { 
 	    // RUN IF THE CART IS EMPTY OR NOT SET
 		$_SESSION["cart_array"] = array(0 => array("item_id" => $pid, "quantity" => 1));
-
 	}else{
 		// RUN IF THE CART HAS AT LEAST ONE ITEM IN IT
 		foreach ($_SESSION["cart_array"] as $each_item) { 
@@ -47,7 +44,6 @@ if (isset($_POST['pid'])) {
 	if (isset($_GET['cmd']) && $_GET['cmd'] == "emptycart") {
 		unset($_SESSION["cart_array"]);
 	}
-
 ?>
 
 <?php 
@@ -59,7 +55,6 @@ if (isset($_POST['pid'])) {
 		if($quantity >= 1000){$quantity = 999;}
 		if($quantity < 1){$quantity = 1;}
 		if($quantity == ""){$quantity = 1;}
-
 		$i = 0;
 		foreach ($_SESSION["cart_array"] as $each_item) { 
 		    $i++;
@@ -75,7 +70,6 @@ if (isset($_POST['pid'])) {
 	header("location: cart.php"); 
     exit();
 	}
-
 ?>
 
 <?php 
@@ -89,7 +83,6 @@ if (isset($_POST['index_to_remove']) && $_POST['index_to_remove'] != "") {
 		sort($_SESSION["cart_array"]);
 	}
 }
-
 ?>
 
 <?php 
@@ -209,4 +202,5 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
  	</div>
  	</div>    
  	<br>
+ 	<?php print_r($_SESSION['cart_array'])?>
 <?php include 'template/footer.php';?>

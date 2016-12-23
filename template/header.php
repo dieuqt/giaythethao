@@ -56,9 +56,9 @@
 				<?php
 				if (isset($_SESSION['username'])){
 						echo "<li><a href='myaccount.php'>Hi, ".$_SESSION['username']."</a></li>";
-						echo "<li><a href='logout.php'>Đăng xuất</a></li>";
+						echo "<li><a href='logout.php'>Đăng xuất</a></li><li><a href='cart.php'>Giỏ hàng</a></li>";
 					}else{
-						echo "<li><a href='login.php'>Đăng nhập</a></li><li><a href='cart.php'>Giỏ hàng</a></li>";
+						echo "<li><a href='login.php'>Đăng nhập</a></li>";
 					}
       			?>
     			</ul>
