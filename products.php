@@ -1,4 +1,6 @@
 <?php 
+if(!session_id())
+  session_start();
 // Connect to the MySQL database  
 include "data_access_helper.php"; 
 $dynamicList = "";
@@ -42,7 +44,7 @@ if ($dproductCount > 0) {
 $mysqli->close();
 
 ?>
-<?php include_once("template/header.php");?>
+<?php include "template/header.php";?>
 <br>
 <br>
 <br>
@@ -53,7 +55,7 @@ $mysqli->close();
 <div class="container">
 	<?php echo $dynamicList; ?>
 </div>
-<?php include_once("template/footer.php");?>
+<?php include "template/footer.php" ;?>
 <script language="javascript" type="text/javascript">
 	$(document).ready(function(e) {
 		setActive(1);

@@ -1,4 +1,4 @@
-
+<?php include 'path.php'; ?>
 <div class="footer-text">
 		<div class="container">
 			<div class="footer-main">

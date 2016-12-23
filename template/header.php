@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 	<html>
 	<head>
-	<title>Free style</title>
+	<title>Free style | Hàng có sẵn </title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="js/jquery-1.11.0.min.js"></script>
@@ -53,8 +53,14 @@
 			</div>
 			<div class="col-md-4 top-header-right">
 				<ul class="nav navbar-nav navbar-right">
-      			<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Giỏ Hàng </a></li>
-      			<li><a href="login.php"><i class="glyphicon glyphicon glyphicon-user"></i> Đăng Nhập</a></li>
+				<?php
+				if (isset($_SESSION['username'])){
+						echo "<li><a href='myaccount.php'>Hi, ".$_SESSION['username']."</a></li>";
+						echo "<li><a href='logout.php'>Đăng xuất</a></li>";
+					}else{
+						echo "<li><a href='login.php'>Đăng nhập</a></li><li><a href='cart.php'>Giỏ hàng</a></li>";
+					}
+      			?>
     			</ul>
 			</div>
 			<div class="clearfix"></div>

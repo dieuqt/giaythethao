@@ -1,4 +1,6 @@
-<?php 
+<?php
+if(!session_id())
+  session_start(); 
 // Connect to the MySQL database  
 include "data_access_helper.php"; 
 $dynamicList = "";

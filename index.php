@@ -1,4 +1,6 @@
-﻿<?php  
+﻿<?php 
+if(!session_id())
+  session_start(); 
 include 'data_access_helper.php'; 
 $dynamicList = "";
 $dsql = $mysqli->query("SELECT * FROM product WHERE stock_status_id =1 ORDER BY date_added DESC LIMIT 12");

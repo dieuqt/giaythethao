@@ -37,16 +37,3 @@ if (isset($_REQUEST['search'])) {
     }
 }
 ?>
-
-<div class="row">
-            <ul class="pagination alg-right-pad">
-              <?php
-                for($b = 1; $b <= $a; $b++){
-                ?><li><a href="search.php?keyword=<?php echo $key; ?>&page=<?php echo $b;?>"> <?php echo $b." "; ?></a><?php  
-              }
-              ?>
-            </ul>
-          </div>
-          </li>
-          </ul>
-          </div>
