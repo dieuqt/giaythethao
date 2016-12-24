@@ -115,10 +115,7 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 }else{
 	$cartTitle ="Giỏ Hàng";
 	//Start Paypal checkout button
-	$pp_checkout_btn .= '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-    <input type="hidden" name="cmd" value="_cart">
-    <input type="hidden" name="upload" value="1">
-    <input type="hidden" name="business" value="qtdieu@gmail.com">';
+	$pp_checkout_btn .= '<form action="checkout.php" method="post">';
 	$i = 0;
 	foreach($_SESSION["cart_array"] as $each_item){
 		$item_id = $each_item['item_id'];
@@ -161,29 +158,27 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 	$cartTotal = '<tr><td colspan="6" class="text-right">Tổng tiền: '.$cartTotal.' USD</td></tr>';
 	//Finish Paypal checkout button
 	$pp_checkout_btn .= '<input type="hidden" name="custom" value="' . $product_id_array . '">
-	<input type="hidden" name="notify_url" value="'.$rooturl.'storescripts/my_ipn.php">
-	<input type="hidden" name="return" value="'.$rooturl.'checkout_complete.php">
-	<input type="hidden" name="rm" value="2">
-	<input type="hidden" name="cbt" value="Return to The Store">
-	<input type="hidden" name="cancel_return" value="'.$rooturl.'paypal_cancel.php">
-	<input type="hidden" name="lc" value="US">
-	<input type="hidden" name="currency_code" value="USD">
+	
+	<button type="submit" name="submit" id="btn_checkout" class="btn btn-success">Thanh Toán</button>
 	</form>';
-
-	if($_SESSION['username']){
-		$username =$_SESSION['username'];
-	}
-	else $username = "guest";
-	date_default_timezone_set('GMT');
-	$today = date("Y-m-d H:i:s");
-	echo $today;
-	if($_SESSION['cart_array'][0]['quantity']){
-		$quantity = $_SESSION['cart_array'][0]['quantity'];
-	}
-echo $username.'/'.$product_name.'/'.$quantity.'/'.$pricetotal;
-
-	$mysqli->query("INSERT INTO order(username, product_id, quantity_order, total, date_added) VALUES ('$username','$product_name','$quantity','$pricetotal','$today')");
+	
 }
+?>
+
+
+<?php
+if($_SESSION['username']){
+    $username =$_SESSION['username'];
+  }
+  else $username = "guest";
+  date_default_timezone_set('GMT');
+  $today = date("Y-m-d H:i:s");
+  if($_SESSION['cart_array'][0]['quantity']){
+    $quantity = $_SESSION['cart_array'][0]['quantity'];
+  }
+  
+  $mysqli->query("INSERT INTO tbl_order(username, product_id, quantity_order, total, date_added) VALUES ('$username','$product_id','$quantity','$pricetotal','$today')");
+  
 ?>
   <?php include 'template/header.php';?>
 <br>
@@ -215,9 +210,8 @@ echo $username.'/'.$product_name.'/'.$quantity.'/'.$pricetotal;
  			<a href="products.php" class="btn btn-default" style="background-color: #7bbd42; color: white"><i class="fa fa-plus"></i> Tiếp Tục Mua Hàng</a>
  		</div>
  		<div class="col-md-4 text-right">
- 			<a href="checkout.php" class="btn btn-primary" ><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Thanh toán</a>
+ 			<?php echo  $pp_checkout_btn; ?>
  		</div>
  	</div>
- 	<br>
- 	<pre><?php print_r($_SESSION["cart_array"]);?></pre>  
+ 	<br> 
   <?php include 'template/footer.php';?>

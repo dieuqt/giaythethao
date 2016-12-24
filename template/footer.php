@@ -2,7 +2,7 @@
 <div class="footer-text">
 		<div class="container">
 			<div class="footer-main">
-				<p class="footer-class">© 2016 Free Style | <a href="http://localhost:8080/giaythethao/admin/web/index.php?r=product%2Findex/">Admin</a></p>
+				<p class="footer-class">© 2016 Free Style | <a href="<?php echo $rooturl; ?>admin/">Admin</a></p>
 			</div>
 		</div>
 	</div>
